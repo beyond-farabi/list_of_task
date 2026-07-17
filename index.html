@@ -20,6 +20,11 @@
             padding: 8px 16px;
             cursor: pointer;
         }
+
+        .done {
+            text-decoration: line-through;
+            color: grey;
+        }
     </style>
 </head>
 <body>
@@ -62,9 +67,20 @@
 
             const newItem =  document.createElement("li");
             newItem.textContent = text;
+
+            newItem.addEventListener("click", function() {
+                newItem.classList.toggle("done");
+            });
+            
             list.appendChild(newItem);
 
             input.value = "";
+        });
+
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                button.click()
+            }
         });
 
     </script>
