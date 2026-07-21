@@ -109,6 +109,13 @@
             color: #1a1a1a;
         }
 
+        .empty {
+            color:#a3a3a3;
+            padding: 12px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
     </style>
 </head>
 <body>
@@ -145,6 +152,14 @@
 
         function renderTasks() {
             list.innerHTML = "";
+
+            if (tasks.length === 0) {
+                const empty = document.createElement("li");
+                empty.textContent = "No task yet...";
+                empty.className = "empty";
+                list.appendChild(empty);
+                return;
+            }
 
             tasks.forEach(function (task, index) {
                 const newItem = document.createElement("li");
