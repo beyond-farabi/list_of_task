@@ -34,56 +34,71 @@
     <button id="add-button">Add</button>
 
     <ul id="task-list">
-        <li>Learn English</li>
-        <li>Learn Fullstack Software Engineer</li>
-        <li>Teaching</li>
-        <li>Reading</li>
+        <!-- <li style="color: grey;">Type your task</li> -->
     </ul>
 
     <script>
-        // console.log("JavaScript is connected");
-        // console.log("2 + 2");
-        // console.log(2 + 2);
-        // console.log("1" - 1)
-        // console.log("halo" - 1)
-        // console.log("Finish executing")
 
         const input = document.getElementById("task-input");
         const button = document.getElementById("add-button");
         const list = document.getElementById("task-list")
+        
+        let tasks = [];
 
-        console.log(input);
-        console.log(button);
-        console.log(list);
+        function saveTasks() {
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        function loadTasks() {
+            const saved = localStorage.getItem("tasks");
+            if (saved) {
+                tasks = JSON.parse(saved);
+            }
+        }
+
+        function renderTasks() {
+            list.innerHTML = "";
+
+            tasks.forEach(function (task, index) {
+                const newItem = document.createElement("li");
+                newItem.textContent = task.text;
+
+                if (task.done) {
+                    newItem.classList.add("done");
+                }
+
+                newItem.addEventListener("click", function () {
+                    tasks[index].done = !tasks[index].done;
+                    saveTasks();
+                    renderTasks();
+                })
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+
+                deleteButton.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    tasks.splice(index, 1);
+                    saveTasks();
+                    renderTasks();
+                });
+
+                newItem.appendChild(deleteButton);
+                list.appendChild(newItem);
+            });
+        }
 
         button.addEventListener("click", function() {
-            // console.log("Button clicked!");
-            // console.log(input.value);
             const text = input.value.trim();
 
             if (text === "") {
                 return;
             }
 
-            const newItem =  document.createElement("li");
-            newItem.textContent = text;
-
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            newItem.appendChild(deleteButton)
-
-            deleteButton.addEventListener("click", function(e) {
-                e.stopPropagation();
-                newItem.remove();
-            });
-
-            newItem.addEventListener("click", function() {
-                newItem.classList.toggle("done");
-            });
-            
-            list.appendChild(newItem);
-
+            tasks.push({ text: text, done: false });
             input.value = "";
+            saveTasks();
+            renderTasks();
         });
 
         input.addEventListener("keydown", function(e) {
@@ -91,6 +106,9 @@
                 button.click()
             }
         });
+
+        loadTasks()
+        renderTasks()
 
     </script>
 </body>
