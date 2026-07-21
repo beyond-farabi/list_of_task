@@ -2,6 +2,8 @@ const input = document.getElementById("task-input");
 const button = document.getElementById("add-button");
 const list = document.getElementById("task-list")
 
+const count = document.getElementById("task-count");
+
 let tasks = [];
 
 function saveTasks() {
@@ -17,6 +19,12 @@ function loadTasks() {
 
 function renderTasks() {
     list.innerHTML = "";
+
+    const doneCount = tasks.filter(function (task) {
+        return task.done;
+    }).length;
+
+    count.textContent = tasks.length + " tasks, " + doneCount + " have been finished.";
 
     if (tasks.length === 0) {
         const empty = document.createElement("li");
