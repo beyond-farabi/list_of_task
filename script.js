@@ -1,8 +1,10 @@
+const count = document.getElementById("task-count");
+
 const input = document.getElementById("task-input");
 const button = document.getElementById("add-button");
 const list = document.getElementById("task-list")
 
-const count = document.getElementById("task-count");
+
 
 let tasks = [];
 
