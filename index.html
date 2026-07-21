@@ -6,32 +6,119 @@
     <title>List of Task</title>
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: sans-serif;
-            max-width: 500px;
-            margin: 40px auto
+            font-family: ui-monospace, "SF mono", Menlo, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background: #fafafa;
+            max-width: 480px;
+            margin: 64px auto;
+            padding: 0 24px;
         }
 
         h1 {
-            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        input {
+            flex: 1;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 8px 12px;
+            border: 1px solid #d4d4d4;
+            background: #fff;
+            color: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        input::placeholder {
+            color: #a3a3a3;
         }
 
         button {
+            font-family: inherit;
+            font-size: 14px;
             padding: 8px 16px;
+            border: 1px solid #1a1a1a;
+            background: #1a1a1a;
+            color: #fff;
             cursor: pointer;
         }
 
-        .done {
-            text-decoration: line-through;
-            color: grey;
+        button:hover {
+            background: #333;
         }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e5;
+            cursor: pointer;
+        }
+
+        li:first-child {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        li.done {
+            color: #a3a3a3;
+            text-decoration: line-through;
+        }
+
+        li button {
+            font-size: 12px;
+            padding: 4px 8px;
+            border: 1px solid #d4d4d4;
+            background: transparent;
+            color: #737373;
+            opacity: 0;
+        }
+
+        li:hover button {
+            opacity: 1;
+        }
+
+        li button:hover {
+            border-color: #1a1a1a;
+            color: #1a1a1a;
+        }
+
     </style>
 </head>
 <body>
     <h1>List of Task</h1>
-    <input type="text" id="task-input" placeholder="Write task...">
 
-    <button id="add-button">Add</button>
+    <div class="input-row">
+        <input type="text" id="task-input" placeholder="Write task...">
+        <button id="add-button">Add</button>
+    </div>
+    
 
     <ul id="task-list">
         <!-- <li style="color: grey;">Type your task</li> -->
