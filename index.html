@@ -68,6 +68,15 @@
             const newItem =  document.createElement("li");
             newItem.textContent = text;
 
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            newItem.appendChild(deleteButton)
+
+            deleteButton.addEventListener("click", function(e) {
+                e.stopPropagation();
+                newItem.remove();
+            });
+
             newItem.addEventListener("click", function() {
                 newItem.classList.toggle("done");
             });
