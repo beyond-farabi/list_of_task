@@ -46,9 +46,10 @@ function renderTasks() {
     tasks.forEach(function (task, index) {
         const newItem = document.createElement("li");
 
-        const marker = document.createElement("span");
+        const marker = document.createElement("button");
         marker.className = "marker";
         marker.textContent = task.done ? "[x]" : "[ ]";
+        marker.setAttribute("arial-label", "Toggle " + task.text);
         newItem.appendChild(marker);
         
         const label = document.createElement("span");
@@ -60,7 +61,7 @@ function renderTasks() {
             newItem.classList.add("done");
         }
 
-        newItem.addEventListener("click", function () {
+        marker.addEventListener("click", function () {
             tasks[index].done = !tasks[index].done;
             saveTasks();
             renderTasks();
@@ -68,6 +69,7 @@ function renderTasks() {
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "X";
+        deleteButton.setAttribute("arial-label", "delete " + task.text);
         deleteButton.className = "delete";
 
         deleteButton.addEventListener("click", function(e) {

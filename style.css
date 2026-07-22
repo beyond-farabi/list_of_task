@@ -90,7 +90,29 @@ li.done {
 
 .marker {
     color: #a3a3a3;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
+
+.marker:hover {
+    color: #a3a3a3;
+}
+
+.marker:focus-visible,
+.delete:focus-visible {
+    outline: 1px solid #a3a3a3;
+    outline-offset: 2px;
+}
+
+li:focus-within .delete {
+    opacity: 1;
+}
+
+
 
 .label {
     flex: 1;
