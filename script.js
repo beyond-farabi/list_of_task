@@ -14,8 +14,15 @@ function saveTasks() {
 
 function loadTasks() {
     const saved = localStorage.getItem("tasks");
-    if (saved) {
-        tasks = JSON.parse(saved);
+    if (!saved) return;
+
+    try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+            tasks = parsed;
+        }
+    } catch (e) {
+        tasks = [];
     }
 }
 
