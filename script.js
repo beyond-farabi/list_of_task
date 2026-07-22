@@ -38,7 +38,16 @@ function renderTasks() {
 
     tasks.forEach(function (task, index) {
         const newItem = document.createElement("li");
-        newItem.textContent = task.text;
+
+        const marker = document.createElement("span");
+        marker.className = "marker";
+        marker.textContent = task.done ? "[x]" : "[ ]";
+        newItem.appendChild(marker);
+        
+        const label = document.createElement("span");
+        label.className = "label";
+        label.textContent = task.text;
+        newItem.appendChild(label);
 
         if (task.done) {
             newItem.classList.add("done");
