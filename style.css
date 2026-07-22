@@ -90,21 +90,21 @@ li.done {
     flex: 1;
 }
 
-li button {
-    font-size: 12px;
-    padding: 4px 8px;
-    border: 1px solid #d4d4d4;
+.delete {
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px 6px;
+    border: none;
     background: transparent;
-    color: #737373;
+    color: #d4d4d4;
     opacity: 0;
 }
 
-li:hover button {
+li:hover .delete {
     opacity: 1;
 }
 
-li button:hover {
-    border-color: #1a1a1a;
+.delete:hover {
     color: #a3a3a3;
 }
 

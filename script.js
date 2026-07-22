@@ -60,7 +60,8 @@ function renderTasks() {
         })
 
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
+        deleteButton.textContent = "X";
+        deleteButton.className = "delete";
 
         deleteButton.addEventListener("click", function(e) {
             e.stopPropagation();
