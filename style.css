@@ -78,6 +78,10 @@ li:first-child {
     border-top: 1px solid #e5e5e5;
 }
 
+/* li:last-child {
+    border-bottom: none;
+} */
+
 li.done {
     color: #a3a3a3;
 }
@@ -118,4 +122,6 @@ li:hover .delete {
 #task-count {
     color: #a3a3a3;
     margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e5e5;
 }

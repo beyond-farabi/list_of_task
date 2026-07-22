@@ -26,7 +26,7 @@ function renderTasks() {
         return task.done;
     }).length;
 
-    count.textContent = tasks.length + " tasks, " + doneCount + " have been finished.";
+    count.textContent = doneCount + " / " + tasks.length + " done";
 
     if (tasks.length === 0) {
         const empty = document.createElement("li");
