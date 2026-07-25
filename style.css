@@ -149,3 +149,22 @@ li:hover .delete {
     padding-top: 12px;
     border-top: 1px solid #e5e5e5;
 }
+
+.edit-input {
+    flex: 1;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #1a1a1a;
+    background: transparent;
+    color: inherit;
+}
+
+.edit-input:focus {
+    outline: none;
+}
+
+li.done .label {
+    text-decoration: line-through;
+}

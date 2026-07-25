@@ -49,13 +49,45 @@ function renderTasks() {
         const marker = document.createElement("button");
         marker.className = "marker";
         marker.textContent = task.done ? "[x]" : "[ ]";
-        marker.setAttribute("arial-label", "Toggle " + task.text);
+        marker.setAttribute("aria-label", "Toggle " + task.text);
         newItem.appendChild(marker);
         
         const label = document.createElement("span");
         label.className = "label";
         label.textContent = task.text;
         newItem.appendChild(label);
+
+        label.addEventListener("dblclick", function () {
+            const editInput = document.createElement("input");
+            editInput.type = "text";
+            editInput.value = task.text;
+            editInput.className = "edit-input";
+
+            newItem.replaceChild(editInput, label);
+            editInput.focus();
+            editInput.select();
+
+            function commit() {
+                const newText = editInput.value.trim();
+                if (newText !== "") {
+                    tasks[index].text = newText;
+                    saveTasks();
+                }
+
+                renderTasks();
+            }
+
+            editInput.addEventListener("blur", commit);
+
+            editInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+                    editInput.blur();
+                }
+                if (e.key === "Escape") {
+                    renderTasks();
+                }
+            });
+        });
 
         if (task.done) {
             newItem.classList.add("done");
@@ -69,7 +101,7 @@ function renderTasks() {
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "X";
-        deleteButton.setAttribute("arial-label", "delete " + task.text);
+        deleteButton.setAttribute("aria-label", "delete " + task.text);
         deleteButton.className = "delete";
 
         deleteButton.addEventListener("click", function(e) {
