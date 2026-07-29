@@ -4,9 +4,28 @@ const input = document.getElementById("task-input");
 const button = document.getElementById("add-button");
 const list = document.getElementById("task-list")
 
-
+const clearButton = document.getElementById("clear-button");
 
 let tasks = [];
+
+clearButton.addEventListener("click", function() {
+    // kosongkan array tasks
+    const confirmed = confirm("Delete all tasks?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    // reset
+    tasks = [];
+
+    // simpan perubahan ke localStorage
+    saveTasks();
+
+    // gambar ulang layar
+    renderTasks();
+    
+});
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
