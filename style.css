@@ -185,3 +185,15 @@ li.done .label {
 #toast.show {
     opacity: 1;
 }
+
+#clear-button {
+  background: transparent;
+  color: #737373;
+  border: 1px solid #d4d4d4;
+}
+
+#clear-button:hover {
+  background: transparent;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}

@@ -8,6 +8,8 @@ const clearButton = document.getElementById("clear-button");
 
 const toast = document.getElementById("toast");
 
+let toastTimer;
+
 let tasks = [];
 
 clearButton.addEventListener("click", function() {
@@ -145,12 +147,14 @@ function renderTasks() {
 }
 
 function showToast(message) {
+
+    clearTimeout(toastTimer);
     toast.textContent = message;
     toast.classList.add("show");
 
-    setTimeout(function () {
+    toastTimer = setTimeout(function () {
         toast.classList.remove("show");
-    }, 2000);
+    }, 3000);
 }
 
 button.addEventListener("click", function() {
