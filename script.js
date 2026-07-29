@@ -6,9 +6,15 @@ const list = document.getElementById("task-list")
 
 const clearButton = document.getElementById("clear-button");
 
+const toast = document.getElementById("toast");
+
 let tasks = [];
 
 clearButton.addEventListener("click", function() {
+
+    // guard: kalau kosong, keluar
+    if (tasks.length === 0) return;
+
     // kosongkan array tasks
     const confirmed = confirm("Delete all tasks?");
 
@@ -24,6 +30,9 @@ clearButton.addEventListener("click", function() {
 
     // gambar ulang layar
     renderTasks();
+
+    // toast
+    showToast("All tasks have been deleted");
     
 });
 
@@ -135,6 +144,15 @@ function renderTasks() {
     });
 }
 
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(function () {
+        toast.classList.remove("show");
+    }, 2000);
+}
+
 button.addEventListener("click", function() {
     const text = input.value.trim();
 
@@ -154,5 +172,6 @@ input.addEventListener("keydown", function(e) {
     }
 });
 
-loadTasks()
-renderTasks()
+loadTasks();
+renderTasks();
+

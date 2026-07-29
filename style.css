@@ -168,3 +168,20 @@ li:hover .delete {
 li.done .label {
     text-decoration: line-through;
 }
+
+#toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background: hsl(107, 27%, 72%);
+    color: #070707;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms;
+}
+
+#toast.show {
+    opacity: 1;
+}
