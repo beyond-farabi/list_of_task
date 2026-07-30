@@ -12,6 +12,10 @@ let toastTimer;
 
 let tasks = [];
 
+let currentFilter = "all";
+
+const filterButtons = document.querySelectorAll(".filter");
+
 clearButton.addEventListener("click", function() {
 
     // guard: kalau kosong, keluar
@@ -73,7 +77,21 @@ function renderTasks() {
         return;
     }
 
-    tasks.forEach(function (task, index) {
+    let visibleTasks = tasks;
+
+    if (currentFilter === "active") {
+        visibleTasks = tasks.filter(function (task) {
+            return !task.done;
+        });
+    }
+
+    if (currentFilter === "done") {
+        visibleTasks = tasks.filter(function (task) {
+            return task.done;
+        });
+    }
+
+    visibleTasks.forEach(function (task, index) {
         const newItem = document.createElement("li");
 
         const marker = document.createElement("button");
@@ -175,6 +193,13 @@ input.addEventListener("keydown", function(e) {
         button.click()
     }
 });
+
+filterButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        currentFilter = btn.dataset.filter;
+        renderTasks();
+    })
+})
 
 loadTasks();
 renderTasks();
