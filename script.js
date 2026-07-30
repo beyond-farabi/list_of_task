@@ -69,14 +69,6 @@ function renderTasks() {
 
     count.textContent = doneCount + " / " + tasks.length + " done";
 
-    if (tasks.length === 0) {
-        const empty = document.createElement("li");
-        empty.textContent = "No task yet...";
-        empty.className = "empty";
-        list.appendChild(empty);
-        return;
-    }
-
     let visibleTasks = tasks;
 
     if (currentFilter === "active") {
@@ -89,6 +81,14 @@ function renderTasks() {
         visibleTasks = tasks.filter(function (task) {
             return task.done;
         });
+    }
+
+    if (visibleTasks.length === 0) {
+        const empty = document.createElement("li");
+        empty.textContent = tasks.length === 0 ? "No task yet..." : "Nothing here";
+        empty.className = "empty";
+        list.appendChild(empty);
+        return;
     }
 
     visibleTasks.forEach(function (task, index) {
@@ -197,9 +197,22 @@ input.addEventListener("keydown", function(e) {
 filterButtons.forEach(function (btn) {
     btn.addEventListener("click", function () {
         currentFilter = btn.dataset.filter;
+        
+
+        // bersihkan tanda dari semua tombol
+        filterButtons.forEach(function (b) {
+            b.classList.remove("active");
+        });
+
+        // tandai yang diklik
+        btn.classList.add("active");
+
         renderTasks();
     })
 })
+
+
+
 
 loadTasks();
 renderTasks();

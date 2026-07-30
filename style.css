@@ -197,3 +197,21 @@ li.done .label {
   border-color: #1a1a1a;
   color: #1a1a1a;
 }
+
+.filter {
+  background: transparent;
+  color: #737373;
+  border: 1px solid #d4d4d4;
+}
+
+.filter:hover {
+  background: transparent;
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.filter.active {
+    background: hwb(0 27% 71%);
+    color: #fff;
+    border-color: #1a1a1a;
+}
